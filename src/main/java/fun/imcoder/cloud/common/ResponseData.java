@@ -2,11 +2,9 @@ package fun.imcoder.cloud.common;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import fun.imcoder.cloud.enums.ResponseEnum;
-import lombok.Data;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.validation.FieldError;
 
-@Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ResponseData<T> implements java.io.Serializable {
     /**
@@ -24,7 +22,8 @@ public class ResponseData<T> implements java.io.Serializable {
      */
     private T data;
 
-    public ResponseData() {}
+    public ResponseData() {
+    }
 
     public ResponseData(Integer code, String msg) {
         this.code = code;
@@ -48,31 +47,31 @@ public class ResponseData<T> implements java.io.Serializable {
         this.data = data;
     }
 
-    public static ResponseData success(){
+    public static ResponseData success() {
         return new ResponseData(ResponseEnum.SUCCESS);
     }
 
-    public static <T> ResponseData<T> success(T data){
+    public static <T> ResponseData<T> success(T data) {
         return new ResponseData<T>(ResponseEnum.SUCCESS, data);
     }
 
-    public static <T> ResponseData<T> success(int code, String msg){
+    public static <T> ResponseData<T> success(int code, String msg) {
         return new ResponseData<T>(code, msg);
     }
 
-    public static ResponseData error(int code, String msg){
-        return new ResponseData(code,msg);
+    public static ResponseData error(int code, String msg) {
+        return new ResponseData(code, msg);
     }
 
-    public static ResponseData error(ResponseEnum responseEnum, String msg){
-        return new ResponseData(responseEnum.getCode(),msg);
+    public static ResponseData error(ResponseEnum responseEnum, String msg) {
+        return new ResponseData(responseEnum.getCode(), msg);
     }
 
-    public static ResponseData error(ResponseEnum responseEnum){
+    public static ResponseData error(ResponseEnum responseEnum) {
         return new ResponseData(responseEnum);
     }
 
-    public static ResponseData error(ResponseEnum responseEnum, Object data){
+    public static ResponseData error(ResponseEnum responseEnum, Object data) {
         return new ResponseData<Object>(responseEnum, data);
     }
 

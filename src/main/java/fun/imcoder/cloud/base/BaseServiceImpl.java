@@ -1,11 +1,9 @@
-package fun.imcoder.cloud.service.impl;
+package fun.imcoder.cloud.base;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import fun.imcoder.cloud.common.PageRequest;
-import fun.imcoder.cloud.service.BaseService;
-import fun.imcoder.cloud.mapper.BaseMapper;
 
 import java.util.List;
 import java.util.Map;

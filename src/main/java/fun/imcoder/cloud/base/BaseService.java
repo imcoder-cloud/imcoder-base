@@ -1,14 +1,16 @@
-package fun.imcoder.cloud.mapper;
+package fun.imcoder.cloud.base;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import org.apache.ibatis.annotations.Param;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.service.IService;
+import fun.imcoder.cloud.common.PageRequest;
 
 import java.util.List;
 import java.util.Map;
 
-public interface BaseMapper<M> extends com.baomidou.mybatisplus.core.mapper.BaseMapper<M> {
+public interface BaseService<M> extends IService<M> {
+
     /**
-     * 自定义查询
+     * 自定义查询 实体 M
      * 需要自己写sql
      *
      * @param m
@@ -29,10 +31,10 @@ public interface BaseMapper<M> extends com.baomidou.mybatisplus.core.mapper.Base
      * 自定义分页查询
      * 需要自己写sql
      *
-     * @param m
+     * @param pageRequest
      * @return
      */
-    List<M> customPage(Page page, @Param(value = "params") M m);
+    IPage<M> customPage(PageRequest<M> pageRequest);
 
     /**
      * 自定义批量插入
@@ -41,4 +43,5 @@ public interface BaseMapper<M> extends com.baomidou.mybatisplus.core.mapper.Base
      * @return
      */
     Boolean insertBatch(List<M> list);
+
 }

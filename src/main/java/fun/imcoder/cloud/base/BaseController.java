@@ -1,4 +1,4 @@
-package fun.imcoder.cloud.controller;
+package fun.imcoder.cloud.base;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -7,8 +7,6 @@ import fun.imcoder.cloud.annotation.ModelParam;
 import fun.imcoder.cloud.common.PageRequest;
 import fun.imcoder.cloud.common.ResponseData;
 import fun.imcoder.cloud.enums.ModelParamType;
-import fun.imcoder.cloud.model.BaseModel;
-import fun.imcoder.cloud.service.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,8 +1,5 @@
 package fun.imcoder.cloud.common;
 
-import lombok.Data;
-
-@Data
 public class PageRequest<T> {
     private Integer pageNum = 1;
     private Integer pageSize = 10;
@@ -16,4 +13,27 @@ public class PageRequest<T> {
         this.pageSize = pageSize;
     }
 
+    public Integer getPageNum() {
+        return pageNum;
+    }
+
+    public void setPageNum(Integer pageNum) {
+        this.pageNum = pageNum;
+    }
+
+    public Integer getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public T getParams() {
+        return params;
+    }
+
+    public void setParams(T params) {
+        this.params = params;
+    }
 }
