@@ -24,6 +24,7 @@ public class BaseController<M extends BaseModel, S extends BaseService> {
     @GetMapping
     public ResponseData<List<M>> list(@ModelParam M m) {
         QueryWrapper<M> queryWrapper = new QueryWrapper<>(m);
+        queryWrapper.orderByDesc(m.getSort());
         return ResponseData.success(service.list(queryWrapper));
     }
 
@@ -41,6 +42,7 @@ public class BaseController<M extends BaseModel, S extends BaseService> {
     public ResponseData<IPage<M>> page(@ModelParam(ModelParamType.PAGE) PageRequest<M> pageRequest) {
         Page<M> page = new Page<>(pageRequest.getPageNum(), pageRequest.getPageSize());
         QueryWrapper<M> queryWrapper = new QueryWrapper<>();
+        queryWrapper.orderByDesc(pageRequest.getParams().getSort());
         queryWrapper.setEntity(pageRequest.getParams());
         IPage rtn = service.page(page, queryWrapper);
         return ResponseData.success(rtn);
