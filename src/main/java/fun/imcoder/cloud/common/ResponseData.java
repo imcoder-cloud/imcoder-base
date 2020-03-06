@@ -7,22 +7,36 @@ import org.springframework.validation.FieldError;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ResponseData<T> implements java.io.Serializable {
-    /**
-     * 异常码
-     */
+
     private Integer code;
-
-    /**
-     * 描述
-     */
     private String message;
-
-    /**
-     * 数据
-     */
     private T data;
 
     public ResponseData() {
+    }
+
+    public Integer getCode() {
+        return code;
+    }
+
+    public void setCode(Integer code) {
+        this.code = code;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
     }
 
     public ResponseData(Integer code, String msg) {
