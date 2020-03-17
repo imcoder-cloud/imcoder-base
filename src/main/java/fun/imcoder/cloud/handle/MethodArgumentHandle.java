@@ -16,6 +16,7 @@ import org.springframework.web.method.annotation.ModelFactory;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.resource.ResourceHttpRequestHandler;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -86,6 +87,9 @@ public class MethodArgumentHandle implements HandlerMethodArgumentResolver, Hand
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
+        if(handler instanceof ResourceHttpRequestHandler){
+            return true;
+        }
         Class controllerClass = ((HandlerMethod) handler).getBeanType();
         Type genericSuperclass = controllerClass.getGenericSuperclass();
         String genericSuperclassName = genericSuperclass.getTypeName();
