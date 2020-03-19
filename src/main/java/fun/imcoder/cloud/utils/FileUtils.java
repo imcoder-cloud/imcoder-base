@@ -210,6 +210,24 @@ public class FileUtils {
     }
 
     /**
+     * 递归删除文件（夹）
+     *
+     * @param file 待删除的文件（夹）
+     * @return
+     */
+
+    public static boolean remove(File file) {
+        if (!file.exists()) {
+            return false;
+        }
+        if (file.isFile()) {
+            return file.delete();
+        }
+        Arrays.asList(file.listFiles()).forEach(FileUtils::remove);
+        return file.delete();
+    }
+
+    /**
      * 得到文件大小
      *
      * @param fileUrl 文件路径
