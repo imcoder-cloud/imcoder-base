@@ -61,12 +61,24 @@ public class BaseController<M extends BaseModel, S extends BaseService> {
     }
 
     @PostMapping
-    public ResponseData<List<M>> saveBatch(@RequestBody List<M> list) {
+    public ResponseData<M> add(@RequestBody M m) {
+        service.save(m);
+        return ResponseData.success(m);
+    }
+
+    @PutMapping
+    public ResponseData<M> update(@RequestBody M m) {
+        service.updateById(m);
+        return ResponseData.success(m);
+    }
+
+    @PostMapping("/batch")
+    public ResponseData<List<M>> addBatch(@RequestBody List<M> list) {
         service.saveBatch(list);
         return ResponseData.success(list);
     }
 
-    @PutMapping
+    @PutMapping("/batch")
     public ResponseData<List<M>> updateBatch(@RequestBody List<M> list) {
         service.updateBatchById(list);
         return ResponseData.success(list);
@@ -89,7 +101,7 @@ public class BaseController<M extends BaseModel, S extends BaseService> {
      * @param list
      * @return
      */
-    @PostMapping("/batch")
+    @PostMapping("/batch-plus")
     public ResponseData<List<M>> insertBatch(@RequestBody List<M> list) {
         service.insertBatch(list);
         return ResponseData.success(list);
@@ -99,10 +111,6 @@ public class BaseController<M extends BaseModel, S extends BaseService> {
     public ResponseData<Boolean> deleteByIds(@RequestParam String ids) {
         List<Integer> list = Arrays.stream(ids.split(",")).mapToInt(s -> Integer.parseInt(s)).boxed().collect(Collectors.toList());
         return ResponseData.success(service.removeByIds(list));
-    }
-
-    public Class<M> getMClass() {
-        return (Class<M>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
     }
 
 }
