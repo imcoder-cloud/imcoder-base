@@ -6,7 +6,9 @@ public class BaseModel {
     private String createTime;
     private String modifyTime;
     @TableField(exist = false)
-    private String order = "create_time";
+    private String order;
+    @TableField(exist = false)
+    private String orderType = "asc";
 
     public String getCreateTime() {
         return createTime;
@@ -30,5 +32,13 @@ public class BaseModel {
 
     public void setOrder(String order) {
         this.order = order;
+    }
+
+    public String getOrderType() {
+        return orderType;
+    }
+
+    public void setOrderType(String orderType) {
+        this.orderType = orderType;
     }
 }
